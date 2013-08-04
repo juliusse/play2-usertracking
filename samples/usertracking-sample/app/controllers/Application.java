@@ -6,7 +6,7 @@ import play.mvc.*;
 
 import views.html.*;
 
-@TrackUser(clazz="Application",method="index")
+@TrackUser(controller="Application",action="index")
 public class Application extends Controller {
   
     public static Result index() {

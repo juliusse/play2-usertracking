@@ -1,27 +1,26 @@
 package info.seltenheim.play2.usertracking;
 
-import akka.actor.ActorSystem;
 import info.seltenheim.play2.usertracking.usertrackingservice.UserTrackingService;
 import info.seltenheim.play2.usertracking.usertrackingservice.UserTrackingServiceConsole;
 import play.Application;
 import play.Configuration;
 import play.Logger;
-import play.Play;
 import play.Plugin;
+import akka.actor.ActorSystem;
 
 public class UserTrackingPlugin extends Plugin {
     
     private static UserTrackingService service = null;
     private static ActorSystem system = ActorSystem.apply();
+    private final Application application;
+    
+    public UserTrackingPlugin(Application application) {
+        this.application = application;
+    }
     
     @Override
-    public void onStart() {
-        final Application app = Play.application();
-        if(app == null) {
-            throw new RuntimeException("Play application hasn't been initialized, yet.");
-        }
-        
-        final Configuration config = app.configuration();
+    public void onStart() {        
+        final Configuration config = application.configuration();
         final String implClass = config.getString("info.seltenheim.play2.usertracking.serviceImpl");
         if(implClass == null) {
             Logger.info("no service implementation found, using Console. To define a service implementation use 'info.seltenheim.play2.usertracking.serviceImpl'.");

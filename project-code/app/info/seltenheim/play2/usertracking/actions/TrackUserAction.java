@@ -1,5 +1,6 @@
 package info.seltenheim.play2.usertracking.actions;
 
+import info.seltenheim.play2.usertracking.ExpiringMap;
 import info.seltenheim.play2.usertracking.UserTrackingPlugin;
 import info.seltenheim.play2.usertracking.usertrackingservice.UserTrackingService;
 
@@ -16,7 +17,7 @@ import akka.actor.Scheduler;
 
 public class TrackUserAction extends Action<TrackUser> {
 
-    private static Map<Context, Cancellable> contextLoggingMap;
+    private static Map<Context, Cancellable> contextLoggingMap = new ExpiringMap<Context, Cancellable>();
 
     @Override
     public Result call(Context context) throws Throwable {
