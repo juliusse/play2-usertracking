@@ -4,6 +4,9 @@ import play.mvc.Http.Context;
 
 public interface UserTrackingService {
     
+    void initTracking(Context context, String controller);
+    void initTracking(Context context, String controller, String action);
+    
     void track(Context context, String controller);
     void track(Context context, String controller, String action);
 }

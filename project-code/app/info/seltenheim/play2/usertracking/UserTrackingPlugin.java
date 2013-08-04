@@ -6,10 +6,11 @@ import play.Application;
 import play.Configuration;
 import play.Logger;
 import play.Plugin;
+import play.mvc.Http;
+import play.mvc.Http.Context;
 import akka.actor.ActorSystem;
 
-public class UserTrackingPlugin extends Plugin {
-    
+public class UserTrackingPlugin extends Plugin {    
     private static UserTrackingService service = null;
     private static ActorSystem system = ActorSystem.apply();
     private final Application application;
@@ -44,4 +45,5 @@ public class UserTrackingPlugin extends Plugin {
     public static ActorSystem getActorSystem() {
         return system;
     }
+   
 }
