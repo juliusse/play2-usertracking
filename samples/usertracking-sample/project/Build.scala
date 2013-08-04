@@ -4,13 +4,15 @@ import play.Project._
 
 object ApplicationBuild extends Build {
 
-  val appOrganisation = "info.seltenheim"
-  val appName         = "usertracking"
+  val appName         = "usertracking-sample"
   val appVersion      = "1.0-SNAPSHOT"
 
   val appDependencies = Seq(
     // Add your project dependencies here,
-    javaCore
+    javaCore,
+    javaJdbc,
+    javaEbean,
+    "usertracking" % "usertracking_2.10" % "1.0-SNAPSHOT"
   )
 
   val main = play.Project(appName, appVersion, appDependencies).settings(
