@@ -16,19 +16,42 @@ import akka.actor.Cancellable;
 import akka.actor.Scheduler;
 
 public class TrackUserAction extends Action<TrackUser> {
-
+    private final static String CONTROLLER_ARG = "info.seltenheim.play2.usertracking.ctx.controller";
+    private final static String ACTION_ARG = "info.seltenheim.play2.usertracking.ctx.action";
     private static Map<Context, Cancellable> contextLoggingMap = new ExpiringMap<Context, Cancellable>();
 
     @Override
     public Result call(Context context) throws Throwable {
-        final String controller = configuration.controller();
-        final String action = configuration.action();
+        String controller = configuration.controller();
+        // check in context
+        if (controller.isEmpty()) {
+            String ctxController = context.args.get(CONTROLLER_ARG).toString();
+            if (ctxController != null) {
+                controller = ctxController;
+            }
+        } //write in context 
+        else {
+            context.args.put(CONTROLLER_ARG, controller);
+        }
+        
+        String action = configuration.action();
+        // check in context
+        if (action.isEmpty()) {
+            String ctxAction = context.args.get(ACTION_ARG).toString();
+            if (ctxAction != null) {
+                action = ctxAction;
+            }
+        } //write in context 
+        else {
+            context.args.put(ACTION_ARG, action);
+        }
+        
         final ExecuteTracking executeTracking = new ExecuteTracking(context, controller, action);
 
         final ActorSystem system = UserTrackingPlugin.getActorSystem();
         final Scheduler scheduler = system.scheduler();
 
-        Cancellable cancellable = scheduler.scheduleOnce(Duration.apply(1, TimeUnit.SECONDS), executeTracking, system.dispatcher());
+        Cancellable cancellable = scheduler.scheduleOnce(Duration.apply(2, TimeUnit.SECONDS), executeTracking, system.dispatcher());
         contextLoggingMap.put(context, cancellable);
 
         return delegate.call(context);
