@@ -12,7 +12,7 @@ object ApplicationBuild extends Build {
     javaCore,
     javaJdbc,
     javaEbean,
-    "usertracking" % "usertracking_2.10" % "1.0-SNAPSHOT"
+    "info.seltenheim" % "play2-usertracking_2.10" % "1.0-SNAPSHOT"
   )
 
   val main = play.Project(appName, appVersion, appDependencies).settings(

@@ -19,8 +19,9 @@ public class Global extends GlobalSettings {
 
             @Override
             public Result call(Context ctx) throws Throwable {
+                final Result result = delegate.call(ctx);
                 TrackUserAction.call(ctx, controller, action);
-                return delegate.call(ctx);
+                return result;
             }
         };
     }

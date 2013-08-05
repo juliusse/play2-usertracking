@@ -4,8 +4,8 @@ import play.Project._
 
 object ApplicationBuild extends Build {
 
-  val appOrganisation = "info.seltenheim"
-  val appName         = "usertracking"
+  val appOrganization = "info.seltenheim"
+  val appName         = "play2-usertracking"
   val appVersion      = "1.0-SNAPSHOT"
 
   val appDependencies = Seq(
@@ -14,7 +14,7 @@ object ApplicationBuild extends Build {
   )
 
   val main = play.Project(appName, appVersion, appDependencies).settings(
-    // Add your own project settings here      
+    organization := appOrganization   
   )
 
 }
