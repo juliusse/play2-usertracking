@@ -14,7 +14,8 @@ object ApplicationBuild extends Build {
   )
 
   val main = play.Project(appName, appVersion, appDependencies).settings(
-    organization := appOrganization   
+    organization := appOrganization
+    , javacOptions ++= Seq("-source", "1.6", "-target", "1.6")//for compatibility with Debian Squeeze 
   )
 
 }
