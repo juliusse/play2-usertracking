@@ -6,6 +6,7 @@ import play.Application;
 import play.Configuration;
 import play.Logger;
 import play.Plugin;
+import play.api.Play;
 import akka.actor.ActorSystem;
 
 public class UserTrackingPlugin extends Plugin {    
@@ -26,7 +27,7 @@ public class UserTrackingPlugin extends Plugin {
             service = new UserTrackingServiceConsole();
         } else {
             try {
-                Class<?> clazz = Class.forName(implClass);
+                Class<?> clazz = Play.classloader(Play.current()).loadClass(implClass);
                 service = (UserTrackingService)clazz.getConstructor().newInstance();
             } catch (Exception e) {
                 Logger.error("Problem instanciating service implementation, Using Console! ",e);

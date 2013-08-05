@@ -12,12 +12,10 @@ import play.mvc.With;
 /**
  * @author Julius Seltenheim (mail@julius-seltenheim.com)
  */
-@With(TrackUserAction.class)
+@With(TrackIgnoreAction.class)
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Inherited
 @Documented
-public @interface TrackUser {
-    String controller() default "";
-    String action() default "";
+public @interface TrackIgnore {
 }

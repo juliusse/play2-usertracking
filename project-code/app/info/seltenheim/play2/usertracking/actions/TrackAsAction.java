@@ -6,7 +6,7 @@ import play.mvc.Action;
 import play.mvc.Http.Context;
 import play.mvc.Result;
 
-public class TrackUserAction extends Action<TrackUser> {
+public class TrackAsAction extends Action<TrackAs> {
     @Override
     public Result call(Context context) throws Throwable {
         String controller = configuration.controller();
