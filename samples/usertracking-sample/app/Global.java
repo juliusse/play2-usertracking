@@ -10,6 +10,7 @@ import play.mvc.Http.Request;
 
 public class Global extends GlobalSettings {
 
+    @SuppressWarnings("rawtypes")
     @Override
     public Action onRequest(Request request, Method method) {
         final String action = method.getName();
