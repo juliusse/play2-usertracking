@@ -1,4 +1,4 @@
-package info.seltenheim.play2.usertracking;
+package info.seltenheim.play2.plugins.usertracking;
 
 import java.util.HashMap;
 import java.util.Map;

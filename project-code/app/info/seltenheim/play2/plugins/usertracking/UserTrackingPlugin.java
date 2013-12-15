@@ -1,7 +1,7 @@
-package info.seltenheim.play2.usertracking;
+package info.seltenheim.play2.plugins.usertracking;
 
-import info.seltenheim.play2.usertracking.usertrackingservice.UserTrackingService;
-import info.seltenheim.play2.usertracking.usertrackingservice.UserTrackingServiceConsole;
+import info.seltenheim.play2.plugins.usertracking.usertrackingservice.UserTrackingService;
+import info.seltenheim.play2.plugins.usertracking.usertrackingservice.UserTrackingServiceConsole;
 import play.Application;
 import play.Configuration;
 import play.Logger;

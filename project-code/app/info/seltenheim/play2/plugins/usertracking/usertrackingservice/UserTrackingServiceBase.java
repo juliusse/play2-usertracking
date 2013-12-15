@@ -1,7 +1,7 @@
-package info.seltenheim.play2.usertracking.usertrackingservice;
+package info.seltenheim.play2.plugins.usertracking.usertrackingservice;
 
-import info.seltenheim.play2.usertracking.ExpiringMap;
-import info.seltenheim.play2.usertracking.UserTrackingPlugin;
+import info.seltenheim.play2.plugins.usertracking.ExpiringMap;
+import info.seltenheim.play2.plugins.usertracking.UserTrackingPlugin;
 
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -74,9 +74,6 @@ public abstract class UserTrackingServiceBase implements UserTrackingService {
     public void ignoreContext(Context context) {
         context.args.put(IGNORE_ARG, "true");
     }
-    
-    public abstract void track(Context context, String controller);
-    public abstract void track(Context context, String controller, String action);
 
     protected static String session(Context context) {
         final Http.Session session = context.session();
@@ -110,10 +107,11 @@ public abstract class UserTrackingServiceBase implements UserTrackingService {
                 return;
             }
             
+            final String session = session(context);
             if (action == null) {
-                service.track(context, controller);
+                service.track(session, controller);
             } else {
-                service.track(context, controller, action);
+                service.track(session, controller, action);
             }
         }
     }

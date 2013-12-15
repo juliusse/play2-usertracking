@@ -1,4 +1,4 @@
-package info.seltenheim.play2.usertracking.actions;
+package info.seltenheim.play2.plugins.usertracking.actions;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -12,10 +12,12 @@ import play.mvc.With;
 /**
  * @author Julius Seltenheim (mail@julius-seltenheim.com)
  */
-@With(TrackIgnoreAction.class)
+@With(TrackAsAction.class)
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Inherited
 @Documented
-public @interface TrackIgnore {
+public @interface TrackAs {
+    String controller() default "";
+    String action() default "";
 }
